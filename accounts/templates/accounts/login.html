@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <h1 class="text-uppercase-capitalize">Connecter</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <p>
+        <label for="username" class="form-label">nom d'utilisateur</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          class="form-control"
+          aria-describedby="emailHelp"
+        />
+      </p>
+    </div>
+    <div class="mb-3">
+      <p>
+        <label for="password" class="form-label">mots de passe</label>
+        <input
+          class="form-control"
+          id="password"
+          type="password"
+          name="password"
+        />
+      </p>
+    </div>
+    <button type="submit" class="btn btn-primary">connection</button>
+  </form>
+  <br />
+</div>
+{% endblock content %}

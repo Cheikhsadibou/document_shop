@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<center>
+  <div class="card" style="width: 35rem">
+    <img
+      class="card-img-top"
+      src="{{ product.Picture.url }}"
+      alt="product.name"
+    />
+    <div class="card-body">
+      <h2 class="card-title">{{ product.name }}</h2>
+      <p class="card-text">{{ product.description }}.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><h3>{{ product.price }} £</h3></li>
+      <li class="list-group-item">{{ product.quantity }} en stock</li>
+    </ul>
+    <div class="card-body">
+      {% if user.is_authenticated %}
+      <p>
+        <a class="btn btn-primary" href="{% url 'add-to-box' product.slug %}"
+          >Ajouter à mon panier</a
+        >
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</center>
+{% endblock content %}

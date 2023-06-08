@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %} 
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- font awesone cdn css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <!-- Bootstrap core css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;1,300&family=Poppins:ital,wght@1,300&family=Redressed&display=swap" rel="stylesheet">
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet" >
+    <link  href="{% static '/css/styles.css' %}" rel="stylesheet">
+  <title>Shop Al Mahdi Service</title>
+</head>
+
+<body>
+  <nav class="csd-navbar navbar navbar-expand-lg position-fixed  navbar-dark w-100">
+    <div class="container-fluid">
+      <a class="navbar-brand text-uppercase fw-bolder mx-2 py-1" href="{% url 'index' %}"><h1>Shop Al Mahdi Service</h1></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item pe-4">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          </li>
+          
+        {% if user.box %}
+          <li class="nav-item pe-4">
+            <p>
+              <a class="nav-link" href="{% url 'box-user' %}">Mon panier ({{ user.box.articles.count }})</a>
+            </p>
+          </li>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+        <li class="nav-item pe-4">
+        <a class="nav-link active    rounded-12" href="{% url 'logout' %}">Deconnecter</a>
+      </li>
+      <li class="nav-item"><a class="nav-link active">{{ user.username | capfirst }}</a></li>
+        
+      
+        {% else %}
+        <li class="nav-item pe-4">
+        <a class="nav-link active btn btn-order rounded-12" href=" {% url 'connection' %} ">Connecter</a>
+      </li>
+
+      <li class="nav-item pe-4">
+        <a class="nav-link active btn btn-order rounded-12" href=" {% url 'register' %} ">s'inscrire</a>
+        </li>
+        {% endif %}
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <section class="banner d-flex justify-content-center align-items-center pt-5">
+    <div class="container my-5 py-5">
+      <div class="row">
+        <div class="col md-6">
+          <h1 class="text-uppercase-capitalize py-3 text-light banner-desc">  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni quas consequatur voluptatibus</h1>
+          <p>
+            <button class="btn btn-order me-5 rounded-12 border-light text-light merriweather">Ajouter au Paniers</button>
+          </p>
+        </div>
+        <div class="col md-6"><div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-inner">
+                  <div class="carousel-item border-success active">
+                    <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                    <img src="{% static '/img/wrist-watch-g48df181c4_1280.png' %}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static '/img/wrist-watch-g48df181c4_1280.png' %}" class="d-block w-100" alt="...">
+                  <div class="carousel-item">
+                    <img src="{% static '/img/wrist-watch-g48df181c4_1280.png' %}" class="d-block w-100" alt="...">
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block content %}
+  
+  {% endblock content %}
+
+
+  <section class="csd-banner py-4 py-md-5 bg-body_tertiary">
+    <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+      <div class="row">
+          <div class="col-lg-3 mb-3">
+          
+          <div class="footer-contact">
+          <h3><a href="#">Get In Touch</a></h3>
+          <p><i class="nav-link disabled text-light ">123 Street, Yoff Layenne, DAKAR</i></p>
+          <p><i class="nav-link disabled text-light">+221 78 223 50 87</i></p>
+          <p><i class="nav-link disabled text-light">cheikhdiouf035@gmail.com</i></p>
+          <div class="footer-social">
+            <a class="btn text-light " href=""><i class="fab fa-twitter"></i></a>
+            <a class="btn text-light " href=""><i class="fab fa-facebook-f"></i></a>
+            <a class="btn text-light " href=""><i class="fab fa-youtube"></i></a>
+            <a class="btn text-light " href=""><i class="fab fa-instagram"></i></a>
+            <a class="btn text-light " href=""><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+      </div>
+      </div>
+        <div class="col-lg-3 mb-3">
+          <nav class="nav flex-column">
+              <h3><a href="#"> Popular Links</a></h3>
+              <p><a class="nav-link text-light" href="#">About Us</a></p>
+              <p><a class="nav-link text-light" href="#">Contact Us</a></p>
+              <p><a class="nav-link text-light" href="#">Our Service</a></p>
+              <p><a class="nav-link text-light" href="#">Service Points</a></p>
+              <p><a class="nav-link text-light" href="#">Pricing Plan</a></p>
+          </nav>
+      </div>
+      <div class="col-lg-3 mb-3">
+          <nav class="nav flex-column">
+            <h3><a href="#">Useful Links</a></h3>
+            <p><a class="nav-link text-light" href="#">Terms of use</a></p>
+            <p><a class="nav-link text-light" href="#">Privacy policy</a></p>
+            <p><a class="nav-link text-light" href="#">Cookies</a></p>
+            <p><a class="nav-link text-light" href="#">Help</a></p>
+            <p><a class="nav-link text-light" href="#">FQAs</a></p>
+          </nav>
+        </div>
+       
+      <div class="col-lg-3 mb-3">
+        <div class="footer-newsletter">
+            <h3><a href="#">Newsletter</a></h3>
+            <form>
+                <input class="form-control mb-3" placeholder="Full Name">
+                <input class="form-control mb-3" placeholder="Email">
+                <button class="btn btn-primary">Submit</button>
+            </form>
+         </div>
+       </div>
+      </div>
+    </div>
+    <div class="text-light container copyright">
+      <p>&copy; <a href="#">SHOP AL MAHDI SERVICE</a>, All Right Reserved. Designed By <a href="#">Cheikh Sadibou Diouf</a></p>
+  </div>
+  </section>
+
+  
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+</body>
+</html>

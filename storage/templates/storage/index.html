@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="container text-center">
+  <div class="row align-items-end">
+    {% for product in products %}
+    <div class="col-4">
+      <div class="card m-3" style="width: 18rem">
+        <img
+          src="{{ product.Picture.url }}"
+          alt="product.name"
+          style="max-width: 250px"
+        />
+        <div class="card-body">
+          <h2>{{ product.name }}</h2>
+          <a class="btn btn-primary" href="{{ product.get_absolute_url }}"
+            >Voir Marque</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
