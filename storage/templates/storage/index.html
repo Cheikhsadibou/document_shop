@@ -5,11 +5,9 @@
     {% for product in products %}
     <div class="col-4">
       <div class="card m-3" style="width: 18rem">
-        <img
-          src="{{ product.Picture.url }}"
-          alt="product.name"
-          style="max-width: 250px"
-        />
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="product.name" style="max-width: 250px">
+        {% endif %}
         <div class="card-body">
           <h2>{{ product.name }}</h2>
           <a class="btn btn-primary" href="{{ product.get_absolute_url }}"
